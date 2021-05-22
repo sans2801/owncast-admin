@@ -44,7 +44,7 @@ export default function TextFieldWithSubmit(props: TextFieldWithSubmitProps) {
     ...textFieldProps // rest of props
   } = props;
 
-  const { fieldName, required, tip, status, value, onChange, onSubmit } = textFieldProps;
+  const { fieldName, required=false, tip, status, value, onChange, onSubmit } = textFieldProps;
 
   // Clear out any validation states and messaging
   const resetStates = () => {
@@ -83,7 +83,9 @@ export default function TextFieldWithSubmit(props: TextFieldWithSubmitProps) {
 
   // how to get current value of input
   const handleSubmit = async () => {
-    if ((required && value !== '') || value !== initialValue) {
+    if ((required && value.toString().trim() !== '' && value.toString().trim() !== initialValue.toString().trim()) ||
+        (!required && value !== initialValue)) 
+    {
       setSubmitStatus(createInputStatus(STATUS_PROCESSING));
 
       await postConfigUpdateToAPI({

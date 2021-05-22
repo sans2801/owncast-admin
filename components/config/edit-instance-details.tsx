@@ -77,6 +77,7 @@ export default function EditInstanceDetails() {
         value={formDataValues.name}
         initialValue={instanceDetails.name}
         onChange={handleFieldChange}
+        required = {true}
       />
 
       <TextFieldWithSubmit

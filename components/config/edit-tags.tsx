@@ -100,6 +100,8 @@ export default function EditInstanceTags() {
     postUpdateToAPI(updatedTags);
   };
 
+  if(tags[0]==="") tags.splice(0,tags.length);
+
   return (
     <div className="tag-editor-container">
       <Title level={3} className="section-title">
